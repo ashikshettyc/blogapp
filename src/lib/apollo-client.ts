@@ -22,8 +22,8 @@ export const {query, mutate} = new ApolloClient({
   cache: new InMemoryCache({ addTypename: false }),
   defaultOptions: {
     query: { 
-      fetchPolicy: "cache-first", 
-      // fetchPolicy: "no-cache" 
+      // fetchPolicy: "cache-first", 
+      fetchPolicy: "no-cache" 
     },  mutate: {
       errorPolicy: 'all', 
     },
