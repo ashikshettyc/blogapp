@@ -48,6 +48,7 @@ export const fetchAllBlogs = async()=> {
   try {
     const {data} = await query({
       query:Get_ALL_BLOGS,
+      fetchPolicy: 'no-cache',
     })
     if (!data) {
       console.warn('No categories found.');
