@@ -9,17 +9,39 @@ import Link from 'next/link';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { formatPublishedDate } from '@/utils/dateSorter';
 import { BASE_URL } from '@/utils/envStore';
+// import type { Swiper as SwiperClass } from 'swiper';
+import { CategorySliderType } from '@/utils/type';
+import type { SwiperRef } from 'swiper/react';
+interface SliderProps {
+  categoryData: CategorySliderType;
+}
 
-const Slider = ({ categoryData }) => {
-  const prevRef = useRef(null);
-  const nextRef = useRef(null);
-  const swiperRef = useRef(null);
+const Slider = ({ categoryData }: SliderProps) => {
+  const prevRef = useRef<HTMLButtonElement>(null);
+  const nextRef = useRef<HTMLButtonElement>(null);
 
+  const swiperRef = useRef<SwiperRef>(null);
   useEffect(() => {
-    if (swiperRef.current && swiperRef.current.swiper) {
+    if (
+      swiperRef.current &&
+      swiperRef.current.swiper &&
+      prevRef.current &&
+      nextRef.current
+    ) {
       const swiperInstance = swiperRef.current.swiper;
-      swiperInstance.params.navigation.prevEl = prevRef.current;
-      swiperInstance.params.navigation.nextEl = nextRef.current;
+
+      // Check if navigation is an object
+      if (typeof swiperInstance.params.navigation === 'object') {
+        swiperInstance.params.navigation.prevEl = prevRef.current;
+        swiperInstance.params.navigation.nextEl = nextRef.current;
+      } else {
+        // If it's false, initialize it as an object
+        swiperInstance.params.navigation = {
+          prevEl: prevRef.current,
+          nextEl: nextRef.current,
+        };
+      }
+
       swiperInstance.navigation.init();
       swiperInstance.navigation.update();
     }
@@ -27,7 +49,6 @@ const Slider = ({ categoryData }) => {
 
   return (
     <div className="relative w-[250px] md:w-[500px] xl:w-[800px]">
-      {/* Swiper Component */}
       <Swiper
         ref={swiperRef}
         slidesPerView={1}
@@ -60,7 +81,7 @@ const Slider = ({ categoryData }) => {
       >
         {categoryData?.blogs?.map((cat, index) => (
           <SwiperSlide
-            className="w-[250px] h-auto xl:w-[351.069px] xl:h-[264px]  lg:ml-0"
+            className="w-[250px] h-auto xl:w-[351.069px] xl:h-[264px] lg:ml-0"
             key={index}
             data-swiper-autoplay={index % 2 === 0 ? 3000 : 5000}
           >
@@ -68,7 +89,6 @@ const Slider = ({ categoryData }) => {
               href={cat?.slug ? `/${cat?.slug}` : '#'}
               className="cursor-pointer space-y-4 flex flex-col justify-start items-start"
             >
-              {/* Image Container */}
               <div className="w-[240px] h-[140px] xl:w-[351px] xl:h-[160px] overflow-hidden">
                 <Image
                   src={`${BASE_URL}${cat?.banner?.url}`}
@@ -78,7 +98,6 @@ const Slider = ({ categoryData }) => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              {/* Description */}
               <h5 className="text-sm text-start w-[240px] xl:w-[351px]">
                 {cat?.title?.substring(0, 80) + '...'}
               </h5>

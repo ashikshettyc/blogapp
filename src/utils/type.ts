@@ -28,20 +28,21 @@ export interface Category {
   }
   
   export interface Article {
-    createdAt?: string; 
+    createdAt: string; 
     updatedAt?: string;
     publishedAt?: string;
     categories?: Category[];
-    banner?: Banner;
+    banner: Banner;
     slug?: string;
     tags?: Tag[];
     title: string;
     documentId?: string;
-    excerpt?: string;
+    excerpt: string;
     isPopular?: boolean;
     isTrending?: boolean;
     popularSequence?: string | null;
     views?: number;
+
   }
   interface tagblogs{
     title:string
@@ -62,7 +63,9 @@ export interface Category {
     documentId:string,
   }
 
-  interface CatBlogs{
+  export interface CatBlogs{
+    documentId?:string,
+    slug: string;
     title:string,
     createdAt:string,
     banner:Banner
@@ -71,4 +74,13 @@ export interface Category {
     slug:string,
     name:string,
     blogs:CatBlogs[]
+  }
+
+  export interface Trends{
+    documentId:string,
+    banner:Banner,
+    slug:string,
+    execert:string,
+    title:string,
+    
   }

@@ -6,8 +6,15 @@ import { fetchAllPostsRelatedSingleTagQuery } from '@/app/_queryCall/ssr';
 import { BASE_URL } from '@/utils/envStore';
 import { formatPublishedDate } from '@/utils/dateSorter';
 import { notFound } from 'next/navigation';
-
-export async function generateMetadata({ params }) {
+import { Article } from '@/utils/type';
+interface blogPagesType {
+  blogs: Article[];
+}
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ tagSlug: string }>;
+}) {
   const { tagSlug } = await params;
 
   const fetchPostsRelatedToTag = await fetchAllPostsRelatedSingleTagQuery(
@@ -22,10 +29,16 @@ export async function generateMetadata({ params }) {
   };
 }
 
-const Page = async ({ params, searchParams }) => {
+const Page = async ({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ tagSlug: string }>;
+  searchParams: Promise<{ page?: string }>;
+}) => {
   const { tagSlug } = await params;
   const { page } = await searchParams;
-  const currentPage = parseInt((await page) || 1, 10);
+  const currentPage = parseInt((await page) || '1', 10);
   const pageSize = 6;
 
   const fetchPostsRelatedToTag = await fetchAllPostsRelatedSingleTagQuery(
@@ -51,7 +64,7 @@ const Page = async ({ params, searchParams }) => {
         </div>
         <div className="container">
           {fetchPostsRelatedToTag?.[0].blogs.length > 0 ? (
-            fetchPostsRelatedToTag.map((blog) =>
+            fetchPostsRelatedToTag.map((blog: blogPagesType) =>
               blog?.blogs?.map((singleBlog) => (
                 <div
                   className="flex flex-col md:flex-row gap-y-8 md:gap-y-0 gap-x-8 border-b-2 px-2 md:px-10 xl:px-0 items-center mx-auto border-gray-300 py-5 my-5"
@@ -65,7 +78,7 @@ const Page = async ({ params, searchParams }) => {
                         src={`${BASE_URL}${singleBlog?.banner?.url}`}
                         width={600}
                         height={600}
-                        alt={singleBlog?.documentId}
+                        alt={singleBlog?.title}
                         className="w-full h-full object-cover"
                       />
                     </Link>

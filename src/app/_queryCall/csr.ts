@@ -1,4 +1,4 @@
-import { gql, useLazyQuery, useMutation, useQuery } from "@apollo/client";
+import { gql } from "@apollo/client";
 import {mutate, query} from '@/lib/apollo-client';
 const UPDATE_BLOG = gql`
   mutation UpdateBlog($documentId: ID!, $data: BlogInput!) {
@@ -8,7 +8,7 @@ const UPDATE_BLOG = gql`
   }
 `;
 
-export const updateBlogCount = async (documentId: string, data: any) => {
+export const updateBlogCount = async (documentId: string, data: unknown) => {
   try {
     const response = await mutate({
       mutation: UPDATE_BLOG,

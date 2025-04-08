@@ -1,7 +1,8 @@
 
-import { WEBSITE_URL, WEBSITE_URL } from "@/utils/envStore";
+export const dynamic = 'force-dynamic';
+import { WEBSITE_URL } from "@/utils/envStore";
 import { fetchCategoriesSSR,fetchAllBlogs, fetchAllTags } from "@/app/_queryCall/ssr";
-// const dynamic = 'force-dynamic'
+
 export async function GET() {
     
   
@@ -25,7 +26,7 @@ export async function GET() {
     `;
   
     // Add Categories
-    categories?.forEach((category) => {
+    categories?.forEach((category:{slug:string}) => {
       sitemap += `
         <url>
           <loc>${WEBSITE_URL}/category/${category.slug}</loc>
@@ -36,7 +37,7 @@ export async function GET() {
     });
   
     // Add Tags
-    tags?.forEach((tag) => {
+    tags?.forEach((tag:{slug:string}) => {
       sitemap += `
         <url>
           <loc>${WEBSITE_URL}/tag/${tag.slug}</loc>
@@ -47,7 +48,7 @@ export async function GET() {
     });
   
     // Add Blog Posts
-    posts?.forEach((post) => {
+    posts?.forEach((post: {slug:string, createdAt:string}) => {
       sitemap += `
         <url>
           <loc>${WEBSITE_URL}/${post.slug}</loc>

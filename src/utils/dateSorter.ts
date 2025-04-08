@@ -6,7 +6,7 @@ export const formatPublishedDate = (publishedAt: string) => {
     const diffInSeconds = Math.floor(diffInMilliseconds / 1000); // Convert milliseconds to seconds
     const diffInMinutes = Math.floor(diffInSeconds / 60); // Convert seconds to minutes
     const diffInHours = Math.floor(diffInMinutes / 60); // Convert minutes to hours
-    const diffInDays = Math.floor(diffInHours / 24); // Convert hours to days
+
   
     // If it's less than 24 hours ago, show "time ago" format
     if (diffInHours < 24) {

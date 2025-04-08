@@ -14,11 +14,14 @@ import { BASE_URL, WEBSITE_URL } from '@/utils/envStore';
 import { formatPublishedDate } from '@/utils/dateSorter';
 import { updateBlogCount } from '../_queryCall/csr';
 import Script from 'next/script';
+import { CatBlogs, Trends } from '@/utils/type';
+import { Metadata } from 'next';
+
 export async function generateMetadata({
   params,
 }: {
-  params: { blogslug: string };
-}) {
+  params: Promise<{ blogslug: string }>;
+}): Promise<Metadata> {
   const { blogslug } = await params;
   const fetchSingleBlogPost = await fetchSingleBlog(blogslug);
 
@@ -51,7 +54,7 @@ export async function generateMetadata({
   };
 }
 
-const page = async ({ params }: { params: { blogslug: string } }) => {
+const page = async ({ params }: { params: Promise<{ blogslug: string }> }) => {
   const { blogslug } = await params;
   const recentBlogs = await AllBLogs();
   const fetchSingleBlogPost = await fetchSingleBlog(blogslug);
@@ -59,7 +62,8 @@ const page = async ({ params }: { params: { blogslug: string } }) => {
     notFound();
   }
   const categoryNames =
-    fetchSingleBlogPost?.categories?.map((cat) => cat.name) || [];
+    fetchSingleBlogPost?.categories?.map((cat: { name: string }) => cat.name) ||
+    [];
   const createdAt = fetchSingleBlogPost?.createdAt;
   const fetchRelatedBlogPosts = await fetchRelatedPostsQuery(
     blogslug,
@@ -171,7 +175,7 @@ const page = async ({ params }: { params: { blogslug: string } }) => {
           <div className="text-center py-9 flex justify-center flex-col items-center space-y-5 px-2 md:px-5 xl:px-0">
             <p className="text-xs border-b-2 border-gray-500 pb-1 w-fit uppercase">
               {fetchSingleBlogPost?.categories
-                .map((cat) => cat?.name)
+                .map((cat: { name: string }) => cat?.name)
                 .join(', ')}
             </p>
             <h1 className="text-primary font-bold text-2xl pb-5">
@@ -193,7 +197,9 @@ const page = async ({ params }: { params: { blogslug: string } }) => {
               <div
                 className="flex-1 text-start w-[90%] mx-auto xl:w-[900px]"
                 dangerouslySetInnerHTML={{
-                  __html: fetchSingleBlogPost?.Content.map((post) => post.Test),
+                  __html: fetchSingleBlogPost?.Content.map(
+                    (post: { Test: string }) => post.Test
+                  ),
                 }}
               />
 
@@ -201,7 +207,7 @@ const page = async ({ params }: { params: { blogslug: string } }) => {
               <div className="md:w-[300px] px-1 md:px-0 xl:sticky xl:top-48 self-start">
                 <h4 className="text-xl pb-10">Latest Post</h4>
                 <div className="md:w-[300px]">
-                  {recentBlogs.slice(0, 4).map((trends) => (
+                  {recentBlogs.slice(0, 4).map((trends: Trends) => (
                     <div
                       className="flex flex-col border-2 mb-5"
                       key={trends.documentId}
@@ -241,7 +247,7 @@ const page = async ({ params }: { params: { blogslug: string } }) => {
             <span>{formatPublishedDate(fetchSingleBlogPost?.createdAt)}</span>-{' '}
             <span className=" uppercase">
               {fetchSingleBlogPost?.categories
-                .map((cat) => cat?.name)
+                .map((cat: { name: string }) => cat?.name)
                 .join(', ')}
             </span>
           </div>
@@ -261,7 +267,7 @@ const page = async ({ params }: { params: { blogslug: string } }) => {
             <p className=" uppercase text-lg">Related Posts</p>
             <div className="w-[50px] p-[0.5px] text-center bg-gray-600 my-2"></div>
             <div className="grid md:grid-cols-3  gap-10 pt-5">
-              {fetchRelatedBlogPosts.map((blog) => (
+              {fetchRelatedBlogPosts.map((blog: CatBlogs) => (
                 <div
                   className=' className="flex flex-col gap-3 px-1'
                   key={blog.documentId}

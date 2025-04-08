@@ -37,7 +37,7 @@ const Section2 = ({ allBlogs, allTag }: Section2Props) => {
                       {blog.title}
                     </p>
                     <p className="text-xs">
-                      {formatPublishedDate(blog.createdAt)}
+                      {formatPublishedDate(blog?.createdAt)}
                     </p>
                   </div>
 

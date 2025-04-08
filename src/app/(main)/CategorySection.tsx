@@ -14,11 +14,7 @@ const CategorySection = async ({ categoryWiseBlog }: catBlogType) => {
         <div className="md:w-[70%] xl:w-[75%] overflow-y-auto overflow-x-hidden max-h-[650px] xl:max-h-[750px] no-scrollbar">
           <div className="space-y-5">
             {categoryWiseBlog?.map((category) => (
-              <ScrollSection
-                category={category}
-                categoryData={category}
-                key={category.name}
-              />
+              <ScrollSection category={category} key={category.name} />
             ))}
           </div>
         </div>

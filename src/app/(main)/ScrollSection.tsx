@@ -1,12 +1,11 @@
 import React from 'react';
 import Slider from './Slider';
 import Link from 'next/link';
-interface category {
-  name: string;
-  slug: string;
+import { CategorySliderType } from '@/utils/type';
+interface ScrollSectionProps {
+  category: CategorySliderType;
 }
-
-const ScrollSection = ({ category, categoryData }: { category: category }) => {
+const ScrollSection = ({ category }: ScrollSectionProps) => {
   return (
     <section className="">
       <div className="max-w-4xl xl:max-w-7xl mx-auto py-10 border-b-2 border-gray-300">
@@ -21,7 +20,7 @@ const ScrollSection = ({ category, categoryData }: { category: category }) => {
             </div>
 
             <div className="flex-1 translate-x-16 xl:-translate-x-0">
-              <Slider categoryData={categoryData} />
+              <Slider categoryData={category} />
             </div>
           </div>
 

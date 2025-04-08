@@ -1,6 +1,7 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 import React, { useState } from 'react';
-import { AsyncTypeahead, Menu, MenuItem } from 'react-bootstrap-typeahead';
+import { AsyncTypeahead, Menu } from 'react-bootstrap-typeahead';
 import Image from 'next/image';
 import { searchBlogsQuery } from '@/app/_queryCall/csr';
 import { BASE_URL } from '@/utils/envStore';
@@ -25,7 +26,7 @@ const SearchInput = () => {
         <AsyncTypeahead
           filterBy={filterBy}
           id="async-example"
-          // isLoading={isLoading}
+          isLoading={isLoading}
           labelKey="title"
           minLength={2}
           maxResults={8}
@@ -37,7 +38,8 @@ const SearchInput = () => {
           }}
           options={options}
           placeholder="Search blogs..."
-          renderMenuItemChildren={(option) => (
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          renderMenuItemChildren={(option: any) => (
             <Link href={`/${option?.slug}`} className="">
               <div className="bg-white w-full flex gap-3 p-2  transition-all duration-300">
                 <Image
@@ -64,8 +66,8 @@ const SearchInput = () => {
                   No results found
                 </div>
               ) : (
-                results.map((option, index) => (
-                  <div key={index} option={option} position={index}>
+                results.map((option: any, index) => (
+                  <div key={index}>
                     <Link href={`/${option?.slug}`} className="">
                       <div className="flex gap-3 p-2 bg-white transition-all duration-300">
                         <Image
