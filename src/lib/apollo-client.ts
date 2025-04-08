@@ -17,7 +17,7 @@ import {  ApolloClient, InMemoryCache, } from "@apollo/experimental-nextjs-app-s
 export const {query, mutate} = new ApolloClient({
   link: new HttpLink({
     uri: process.env.NEXT_PUBLIC_BASE_GQL_URL,
-    // fetchOptions: { cache: "default",  }, 
+    fetchOptions: { cache: "no-cache",  }, 
   }),
   cache: new InMemoryCache({ addTypename: false }),
   defaultOptions: {
