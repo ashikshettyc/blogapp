@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { fetchAllPostsRelatedToCategory } from '@/app/_queryCall/ssr';
-import { BASE_URL, WEBSITE_URL } from '@/utils/envStore';
+import { WEBSITE_URL } from '@/utils/envStore';
 import { formatPublishedDate } from '@/utils/dateSorter';
 import { notFound } from 'next/navigation';
 import { Article } from '@/utils/type';

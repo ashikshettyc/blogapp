@@ -146,7 +146,7 @@ export const AllBLogs = async() =>{
       pagination: {
         limit: 10
       }
-     }
+     },fetchPolicy: 'no-cache'
     });
     
     if (!data || !data.blogs) {

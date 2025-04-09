@@ -10,7 +10,7 @@ import {
   fetchRelatedPostsQuery,
   fetchSingleBlog,
 } from '../_queryCall/ssr';
-import { BASE_URL, WEBSITE_URL } from '@/utils/envStore';
+import { WEBSITE_URL } from '@/utils/envStore';
 import { formatPublishedDate } from '@/utils/dateSorter';
 import { updateBlogCount } from '../_queryCall/csr';
 import Script from 'next/script';
