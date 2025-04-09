@@ -373,7 +373,7 @@ export const fetchSingleBlog = async (blogSlug: string) => {
             eq: blogSlug,
           },
         },
-      },
+      },fetchPolicy: 'no-cache'
     });
 
     if (!data && !data?.blogs) {
