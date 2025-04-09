@@ -306,7 +306,7 @@ try {
         "page": currentPage | 1,
         "pageSize": pageSize | 4
       }
-    }  
+    },fetchPolicy: 'no-cache'  
   })
   if(!data || !data.categories){
     console.warn('No categories found.');

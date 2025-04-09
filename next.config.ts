@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
     ignoreDuringBuilds: true,
   },
   images: {
+    domains: ['res.cloudinary.com'],
     remotePatterns: [
       {
         protocol: 'https',
@@ -13,6 +14,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  
 };
 
 export default nextConfig;

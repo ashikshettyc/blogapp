@@ -12,7 +12,6 @@ import 'swiper/css/navigation';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import Image from 'next/image';
 import Link from 'next/link';
-import { BASE_URL } from '@/utils/envStore';
 import { Article } from '@/utils/type';
 interface Section2Props {
   allBlogs: Article[];
@@ -48,7 +47,7 @@ export default function App({ allBlogs }: Section2Props) {
 
               {/* Image */}
               <Image
-                src={`${BASE_URL}${data.banner.url}`}
+                src={`${data.banner.url}`}
                 alt="Image"
                 width={1800}
                 height={500}

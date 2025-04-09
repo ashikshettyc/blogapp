@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { AsyncTypeahead, Menu } from 'react-bootstrap-typeahead';
 import Image from 'next/image';
 import { searchBlogsQuery } from '@/app/_queryCall/csr';
-import { BASE_URL } from '@/utils/envStore';
+
 import Link from 'next/link';
 
 const SearchInput = () => {
@@ -44,7 +44,7 @@ const SearchInput = () => {
               <div className="bg-white w-full flex gap-3 p-2  transition-all duration-300">
                 <Image
                   alt={option.title}
-                  src={`${BASE_URL}${option.banner.url}`}
+                  src={`${option.banner.url}`}
                   width={150}
                   height={200}
                   className="object-cover rounded-md"
@@ -72,7 +72,7 @@ const SearchInput = () => {
                       <div className="flex gap-3 p-2 bg-white transition-all duration-300">
                         <Image
                           alt={option.title}
-                          src={`${BASE_URL}${option.banner.url}`}
+                          src={`${option.banner.url}`}
                           width={150}
                           height={200}
                           className="object-cover rounded-md"

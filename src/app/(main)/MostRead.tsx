@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { mostviewsType } from '@/utils/type';
-import { BASE_URL } from '@/utils/envStore';
+
 import { formatPublishedDate } from '@/utils/dateSorter';
 interface Section2Props {
   mostViews: mostviewsType[];
@@ -22,7 +22,7 @@ const MostRead = ({ mostViews }: Section2Props) => {
               className="md:w-[160px] xl:w-[60%] h-[140px] xl:h-[170px]"
             >
               <Image
-                src={`${BASE_URL}${blog.banner.url}`}
+                src={`${blog.banner.url}`}
                 alt="image"
                 width={240}
                 height={140}

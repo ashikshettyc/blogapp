@@ -34,7 +34,7 @@ export async function generateMetadata({
       url: `${fetchSingleBlogPost?.slug}`,
       images: [
         {
-          url: `${BASE_URL}${fetchSingleBlogPost?.banner.url}`,
+          url: `${fetchSingleBlogPost?.banner.url}`,
           width: 800,
           height: 600,
           alt: fetchSingleBlogPost?.title,
@@ -46,7 +46,7 @@ export async function generateMetadata({
       title: fetchSingleBlogPost?.title,
       description: fetchSingleBlogPost?.excerpt,
       site: '@FollowCII',
-      images: `${BASE_URL}${fetchSingleBlogPost?.banner.url}`,
+      images: `${fetchSingleBlogPost?.banner.url}`,
     },
     alternates: {
       canonical: `${WEBSITE_URL}/${fetchSingleBlogPost?.slug}`,
@@ -99,7 +99,7 @@ const page = async ({ params }: { params: Promise<{ blogslug: string }> }) => {
       },
     },
     image: fetchSingleBlogPost.banner?.url
-      ? `${BASE_URL}/${fetchSingleBlogPost.banner.url}`
+      ? `/${fetchSingleBlogPost.banner.url}`
       : 'https://yourdomain.com/default-image.jpg',
     url: `${WEBSITE_URL}/${fetchSingleBlogPost.slug}`,
     mainEntityOfPage: {
@@ -130,7 +130,7 @@ const page = async ({ params }: { params: Promise<{ blogslug: string }> }) => {
                 <div className="w-[280px] h-[188px] flex justify-start flex-col items-end border-2 p-5 pl-28 space-y-3 ">
                   <div className="w-[165px] h-[100px] ">
                     <Image
-                      src={`${BASE_URL}${fetchPrevPosts?.[0].banner?.url}`}
+                      src={`${fetchPrevPosts?.[0].banner?.url}`}
                       alt="Image"
                       width={1800}
                       height={500}
@@ -155,7 +155,7 @@ const page = async ({ params }: { params: Promise<{ blogslug: string }> }) => {
                 <div className="w-[280px] h-[188px] flex justify-end flex-col items-start border-2 p-5 pr-28 space-y-3 ">
                   <div className="w-[165px] h-[100px] ">
                     <Image
-                      src={`${BASE_URL}${fetchNextPosts?.[0].banner?.url}`}
+                      src={`${fetchNextPosts?.[0].banner?.url}`}
                       alt="Image"
                       width={1800}
                       height={500}
@@ -184,7 +184,7 @@ const page = async ({ params }: { params: Promise<{ blogslug: string }> }) => {
             {fetchSingleBlogPost?.banner?.url && (
               <div className="w-full h-full">
                 <Image
-                  src={`${BASE_URL}${fetchSingleBlogPost?.banner.url}`}
+                  src={`${fetchSingleBlogPost?.banner.url}`}
                   alt={fetchSingleBlogPost?.title}
                   width={1800}
                   height={500}
@@ -215,7 +215,7 @@ const page = async ({ params }: { params: Promise<{ blogslug: string }> }) => {
                       <Link href={`/${trends.slug}`}>
                         <div className="md:w-[300px] h-[150px]">
                           <Image
-                            src={`${BASE_URL}${trends?.banner.url}`}
+                            src={`${trends?.banner.url}`}
                             alt={trends.slug}
                             width={1800}
                             height={500}
@@ -275,7 +275,7 @@ const page = async ({ params }: { params: Promise<{ blogslug: string }> }) => {
                   <Link href={`/${blog.slug}`}>
                     <div className="w-full h-[150px]">
                       <Image
-                        src={`${BASE_URL}${blog?.banner.url}`}
+                        src={`${blog?.banner.url}`}
                         alt="image"
                         width={240}
                         height={140}

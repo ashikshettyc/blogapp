@@ -8,7 +8,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 import { formatPublishedDate } from '@/utils/dateSorter';
-import { BASE_URL } from '@/utils/envStore';
+
 // import type { Swiper as SwiperClass } from 'swiper';
 import { CategorySliderType } from '@/utils/type';
 import type { SwiperRef } from 'swiper/react';
@@ -91,7 +91,7 @@ const Slider = ({ categoryData }: SliderProps) => {
             >
               <div className="w-[240px] h-[140px] xl:w-[351px] xl:h-[160px] overflow-hidden">
                 <Image
-                  src={`${BASE_URL}${cat?.banner?.url}`}
+                  src={`${cat?.banner?.url}`}
                   alt={cat?.slug}
                   width={1800}
                   height={500}

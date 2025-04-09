@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { Article, Tags } from '@/utils/type';
-import { BASE_URL } from '@/utils/envStore';
+
 import { formatPublishedDate } from '@/utils/dateSorter';
 interface Section2Props {
   allBlogs: Article[];
@@ -44,7 +44,7 @@ const Section2 = ({ allBlogs, allTag }: Section2Props) => {
                   {/* Image */}
 
                   <Image
-                    src={`${BASE_URL}${blog.banner.url}`}
+                    src={`${blog.banner.url}`}
                     alt={blog.title}
                     width={400}
                     height={170}

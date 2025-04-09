@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 import { fetchAllPostsRelatedSingleTagQuery } from '@/app/_queryCall/ssr';
-import { BASE_URL } from '@/utils/envStore';
+
 import { formatPublishedDate } from '@/utils/dateSorter';
 import { notFound } from 'next/navigation';
 import { Article } from '@/utils/type';
@@ -75,7 +75,7 @@ const Page = async ({
                       href={singleBlog?.slug ? `/${singleBlog?.slug}` : '#'}
                     >
                       <Image
-                        src={`${BASE_URL}${singleBlog?.banner?.url}`}
+                        src={`${singleBlog?.banner?.url}`}
                         width={600}
                         height={600}
                         alt={singleBlog?.title}

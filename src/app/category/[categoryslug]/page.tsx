@@ -76,7 +76,7 @@ const Page = async ({
                 <div className="flex-1 aspect-square md:aspect-auto md:w-full md:h-[325px] xl:h-[290px]">
                   <Link href={singleBlog?.slug ? `/${singleBlog?.slug}` : '#'}>
                     <Image
-                      src={`${BASE_URL}${singleBlog?.banner?.url}`}
+                      src={`${singleBlog?.banner?.url}`}
                       width={600}
                       height={600}
                       alt={singleBlog.title}
