@@ -185,7 +185,7 @@ query Tags {
 export const allTags = async()=> {
   try {
     const {data} = await query({
-      query:tags
+      query:tags,fetchPolicy: 'no-cache'
     })
     if(!data || !data.tags){
       console.warn('No tags found.');
@@ -254,7 +254,7 @@ query Blogs {
 export const CategoryWiseBlogsQuery = async() =>{
 try {
   const {data} = await query({
-    query:CategoryWiseBlogs
+    query:CategoryWiseBlogs,fetchPolicy: 'no-cache'
   })
   if(!data || !data.categories){
     console.warn('No categories found.');
